@@ -68,6 +68,7 @@ function isPlacementValid(ships: ShipPlacement[]): boolean {
 
   for (let i = 0; i < ships.length; i++) {
     const ship = ships[i];
+    if (!ship) return false;
     if (ship.length !== SHIP_LENGTHS[i]) return false;
     if (
       ship.x < 0 ||
