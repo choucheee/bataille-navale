@@ -45,8 +45,8 @@ app.use(cors());
 const clientDistPath = path.join(__dirname, "../../client/dist");
 app.use(express.static(clientDistPath));
 
-// Route catch-all pour le SPA (doit être après les routes API)
-app.get("*", (req, res) => {
+// SOLUTION ULTIME : Utiliser une RegExp littérale pour éviter le parseur de strings
+app.get(/^(?!\/socket\.io).+/, (req, res) => {
   res.sendFile(path.join(clientDistPath, "index.html"));
 });
 
@@ -293,4 +293,3 @@ const HOST = process.env.HOST || "0.0.0.0";
 httpServer.listen(Number(PORT), HOST, () => {
   console.log(`Serveur prêt sur ${HOST}:${PORT}`);
 });
-

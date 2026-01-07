@@ -153,7 +153,8 @@ function validateInput(input, type = "pseudo") {
 function App() {
   const socket = useMemo(
     () =>
-      io(SERVER_URL, {
+      io("https://mmi23d12.mmi-troyes.fr", {
+        path: "/bataille-navale/socket.io",
         transports: ["websocket", "polling"],
         autoConnect: false,
       }),
